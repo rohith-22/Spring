@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cars</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+    <link href="../static/static/style.css"
+          th:href="@{css/style.css}" rel="stylesheet" media="screen"/>
+</head>
+<body>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(cars)}">
+        <h2>Cars List</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Car ID</th>
+                <th>Car Name</th>
+                <th>Price</th>
+                <th>Image </th>
+                <th>List</th>
+                <th>List</th>
+                <th>List</th>
+            </tr>
+            <tr th:each="car:${cars}">
+                <td th:text="${car.id}"></td>
+                <td th:text="${car.carName}"></td>
+                <td th:text="${car.carPrice}"></td>
+                <td><img th:src="@{car.imageUrl}"/></td>
+                <td><a th:href="${'/car/' + car.id}">View</a></td>
+                <td><a th:href="${'/car/edit/' + car.id}">edit</a></td>
+                <td><a th:href="${'/car/delete/' + car.id}">delete</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+      <a href="/car/new">add new car here</a>
+</body>
+</html>
